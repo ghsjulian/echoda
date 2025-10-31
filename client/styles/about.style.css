@@ -1,0 +1,162 @@
+.container {
+    width: 100%;
+    margin: auto;
+    padding: 0 1rem;
+}
+
+/* ==== HERO SECTION ==== */
+.hero-about {
+    /*
+    background:
+        linear-gradient(rgba(10, 61, 98, 0.85), rgba(10, 61, 98, 0.85)),
+        url("/images/echoda-hero-2.jpg") center/cover no-repeat;
+    */
+    color: #fff;
+    padding: 5rem 1rem;
+    text-align: center;
+}
+.hero-about h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+.hero-about p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 1rem auto;
+    opacity: 0.95;
+}
+
+/* ==== CONTENT SECTION ==== */
+.about-content {
+    padding: 4rem 1rem;
+}
+.section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    color: #0a3d62;
+}
+.section-title::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: #f39c12;
+    margin: 1rem auto;
+    display: block;
+}
+
+.bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+oader .bio-text h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+.bio-text p {
+    margin-bottom: 1rem;
+}
+.bio-image img {
+    border: 5px solid #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.vision-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+.vision-item {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+}
+.vision-item:hover {
+    transform: translateY(-8px);
+}
+.vision-item svg {
+    width: 40px;
+    height: 40px;
+    fill: #f39c12;
+    margin-bottom: 1rem;
+}
+.vision-item h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.team-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.team-card:hover {
+    transform: translateY(-10px);
+}
+.team-card img {
+    height: 180px;
+    object-fit: cover;
+}
+.team-card h4 {
+    margin: 1rem 0 0.5rem;
+    font-size: 1.2rem;
+}
+.team-card p {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    padding: 0 1rem 1.5rem;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 992px) {
+    .bio-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .bio-image img {
+        max-width: 300px;
+        margin: auto;
+    }
+}
+@media (max-width: 768px) {
+    .hero-about h1 {
+        font-size: 2.2rem;
+    }
+    .hero-about p {
+        font-size: 1.1rem;
+    }
+    .links {
+        justify-content: center;
+        gap: 1rem;
+    }
+    .header-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+@media (max-width: 480px) {
+    .email-area {
+        flex-direction: column;
+    }
+    .email-area input,
+    .email-area button {
+        width: 100%;
+    }
+}

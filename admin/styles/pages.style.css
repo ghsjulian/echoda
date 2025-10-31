@@ -1,0 +1,215 @@
+.edit-about {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 0.5rem auto;
+}
+.edit-about span {
+    margin: 0.5rem auto;
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border-radius: 5px;
+    text-align: center;
+}
+.edit-about .error {
+    font-weight: 700;
+    color: #f41a0d;
+    background: #f178713e;
+    border: 1px solid #f41a0d;
+}
+.edit-about .success {
+    font-weight: 700;
+    color: #07cf10;
+    background: #71f1773e;
+    border: 1px solid #07cf10;
+}
+.edit-about .form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+}
+
+.edit-about .form .flex {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.6rem 0;
+}
+.edit-about .form .box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    margin: 0.6rem 0;
+    position: relative;
+}
+.flex label {
+    color: #333434;
+    font-weight: 700;
+    padding: 0.5rem 0.7rem;
+    border-radius: 5px;
+    border: 1px solid #333434;
+    cursor: pointer;
+}
+.flex img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+.box strong {
+    width: 100%;
+    color: #333434;
+    font-weight: 700;
+    padding: 0.8rem 0;
+    border-radius: 5px;
+}
+.box textarea {
+    width: 100%;
+    height: 80px;
+    resize: none;
+    outline: none;
+    border: 1px solid gray;
+    padding: 0.5rem 0.7rem;
+    border-radius: 5px;
+    font-weight: 700;
+    color: gray;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.box input {
+    width: 100%;
+    outline: none;
+    border: 1px solid gray;
+    padding: 0.7rem 0.7rem;
+    border-radius: 5px;
+    font-weight: 700;
+    color: gray;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.box small {
+    position: absolute;
+    right: 3px;
+    bottom: 2px;
+}
+.form button {
+    outline: none;
+    border: none;
+    justify-content: center;
+    padding: 0.7rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #0d5806;
+    color: white;
+    font-weight: 700;
+    margin: 0.5rem auto;
+}
+.blog-form {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.blog-form label,
+.blog-form input,
+.blog-form textarea,
+.blog-form button {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+}
+.blog-form strong,
+.blog-form label {
+    margin: 0.3rem 0;
+    padding: 0 0.3rem;
+    width: 100%;
+}
+.blog-form span {
+    margin: 0.5rem auto;
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border-radius: 5px;
+    text-align: center;
+}
+.blog-form .error {
+    font-weight: 700;
+    color: #f41a0d;
+    background: #f178713e;
+    border: 1px solid #f41a0d;
+}
+.blog-form .success {
+    font-weight: 700;
+    color: #07cf10;
+    background: #71f1773e;
+    border: 1px solid #07cf10;
+}
+.blog-form img {
+    width: 100%;
+    height: 70%;
+    border-radius: 5px;
+    margin: 0.5rem auto;
+    object-fit: cover;
+}
+.blog-form label {
+    border: 1px solid #323435;
+    padding: 0.5rem;
+}
+.blog-form input,
+button,
+textarea {
+    outline: none;
+    border: 1px solid #323435;
+    color: #131617;
+    font-weight: 600;
+}
+.blog-form button {
+    outline: none;
+    border: none;
+    justify-content: center;
+    padding: 0.7rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #0d5806;
+    color: white;
+    font-weight: 700;
+    margin: 0.5rem auto;
+    width: 160px;
+}
+
+.blog-form .blog-text {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    border: 1px solid #3b3d3e;
+    padding: .6rem;
+    margin: .3rem auto;
+    color: #101416;
+    font-weight: 600;
+    resize: none;
+}
+.blog-form small {
+    text-align: right;
+    font-weight: 600;
+    
+}
+
+/* Responsive Style */
+@media (max-width: 768px) {
+    .edit-about,
+    .blog-form {
+        width: 100%;
+    }
+}
