@@ -9,7 +9,7 @@ const editFlyer = async (req, res) => {
     try {
         const { id } = req.params;
         const { title, flyer } = req.body;
-        const host = process.env.HOST;
+        const host = process.env.NODE_ENV === "production" ? "https://echoda.onrender.com" : process.env.HOST;
         let fileData = null;
         let oldFlyer = await flyerModel.findById(id);
         if (flyer && id.trim() !== flyer.trim()) {

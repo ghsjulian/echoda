@@ -13,7 +13,7 @@ const getString = () => {
 
 const createFlyer = async (req, res) => {
     try {
-        const host = process.env.HOST;
+        const host = process.env.NODE_ENV === "production" ? "https://echoda.onrender.com" : process.env.HOST;
         const { flyer, title } = req.body;
         let fileData = null;
         if (flyer && title) {

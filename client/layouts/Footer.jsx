@@ -42,6 +42,7 @@ const Footer = () => {
                         placeholder="Enter Email Address"
                     />
                     <button disabled={isSubscribing} onClick={async(e)=>{e.preventDefault()
+                    if(email.trim() === "") return
                         await subscribedEmail(email,setEmail,showMessage)}}>{isSubscribing ? "Processing..." : "Subscribe Now"}</button>
                 </div>
             </div>
