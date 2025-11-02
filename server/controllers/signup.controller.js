@@ -1,4 +1,5 @@
 const userModel = require("../models/user.model");
+const subscriberModel = require("../models/subscribe.model")
 const { createHash } = require("../functions/password-hashing");
 const { createJWT, setCookie } = require("../functions/jwt-token-generator");
 const sendMail = require("../configs/mailer.config");
@@ -26,7 +27,7 @@ const signupController = async (req, res) => {
             const uploadResult = await Uploader(profile, publicID);
             avatar = uploadResult?.secure_url;
         }
-        const newUser = await new userModel({
+        const newUser = new userModel({
             name,
             email,
             password: hash,
@@ -36,6 +37,8 @@ const signupController = async (req, res) => {
         const token = await createJWT({ _id: newUser._id, name, email });
         setCookie(res, token);
         await newUser.save();
+        const subscriber = new subscriberModel({email})
+        subscriber.save()
         // let otp = Math.floor(Math.random() * (900000 - 100000)) + 100000;
         // This is commented because i'm in offline
         // And offline can't send emails

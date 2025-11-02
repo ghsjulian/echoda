@@ -41,8 +41,8 @@ const Footer = () => {
                         autocomplete
                         placeholder="Enter Email Address"
                     />
-                    <button onClick={async(e)=>{e.preventDefault()
-                        await subscribedEmail(email,showMessage)}}>{isSubscribing ? "Processing..." : "Subscribe Now"}</button>
+                    <button disabled={isSubscribing} onClick={async(e)=>{e.preventDefault()
+                        await subscribedEmail(email,setEmail,showMessage)}}>{isSubscribing ? "Processing..." : "Subscribe Now"}</button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import axios from "../libs/axios";
+import useApp from "./useApp"
 
 const useAuth = create((set, get) => ({
     user: JSON.parse(localStorage.getItem("echodauser")) || null,
@@ -18,6 +19,8 @@ const useAuth = create((set, get) => ({
                 return;
             }
             localStorage.setItem("echodauser", JSON.stringify(res?.data?.user));
+            localStorage.setItem("echoda-ubscriber",data.email)
+            useApp.setState({subscriber : data.email})
             showMessage(res?.data?.message, true);
             setTimeout(() => {
                 navigate("/");

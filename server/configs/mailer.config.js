@@ -12,7 +12,7 @@ const sendMail = async (toEmail) => {
         let mailOptions = {
             from: "Echoda Web'ghsgobindo@gmail.com'",
             to: toEmail,
-            subject: "Welcome To Let's Talk !",
+            subject: "You Have successfully Subscribed In Our Community.",
             text: "You Have successfully Subscribed In Our Community.",
             html: `<!doctype html><html lang="en"><head>
   <meta charset="utf-8">

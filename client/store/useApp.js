@@ -9,6 +9,7 @@ const useApp = create((set, get) => ({
     settings: {},
     blogs: [],
     flyers: [],
+    subscriber : localStorage.getItem("echoda-subscriber") || null,
 
     getSettings: async () => {
         try {
@@ -64,13 +65,14 @@ const useApp = create((set, get) => ({
         }
     } ,
      
-    subscribedEmail : async(email,showMessage) => {
+    subscribedEmail : async(email,setMail,showMessage) => {
         try {
             set({isSubscribing : true})
             const res = await axios.post("/auth/subscribed-email",{email})
            if(res?.data?.success) {
              showMessage(res?.data?.message,true)
-           }else {
+             setMail("")
+             localStorage.setItem("echoda-subscriber",email)
             showMessage(res?.data?.message,false)
            }
         } catch (error) {

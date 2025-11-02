@@ -38,7 +38,7 @@ app.use(express.static(appPath));
 app.use("/uploads", express.static(uploadPath));
 
 // ---------------------- SPA FALLBACK ----------------------
-app.get(/.*/, (req, res) => {
+app.get("/", (req, res) => {
     if (req.originalUrl.startsWith("/admin")) {
         res.sendFile(path.join(adminPath, "index.html"));
     } else {

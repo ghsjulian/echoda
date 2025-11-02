@@ -268,13 +268,10 @@ footer {
     justify-content: space-between;
     align-items: center;
 }
-.email-subscription #msg {
-    width: 100%;
-    margin: .5rem auto;
-    padding: .5rem 1rem;
-    text-align: center;
-}
+
 .email-subscription .error {
+     width: 70%;
+    margin: .5rem auto;
     text-align: center;
     font-weight: 800;
     padding: 0.5rem 1rem;
@@ -284,6 +281,8 @@ footer {
     border: 0.2px solid var(--error-border);
 }
 .email-subscription .success {
+     width: 70%;
+    margin: .5rem auto;
     text-align: center;
     font-weight: 800;
     padding: 0.5rem 1rem;
