@@ -1,15 +1,15 @@
 {
-  "name": "echoda server",
+  "name": "echoda-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
- "scripts": {
-  "start": "npm run build-all && npm install && node server/server.js",
+"scripts": {
+  "start": "node server/server.js",
   "server": "nodemon server/server.js",
-  "client": "cd client && npm start",
-  "admin": "cd admin && npm start",
-  "client-build": "cd client && npm install && npm run build",
-  "admin-build": "cd admin && npm install && npm run build",
+  "client": "cd client && npm run client",
+  "admin": "cd admin && npm run admin",
+  "client-build": "cd client && npm run build",
+  "admin-build": "cd admin && npm run build",
   "build-all": "npm run client-build && npm run admin-build"
 },
   "dependencies": {
