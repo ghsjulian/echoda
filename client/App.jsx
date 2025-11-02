@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import {
     BrowserRouter as Router,
     Routes,
@@ -6,46 +6,68 @@ import {
     Navigate
 } from "react-router-dom";
 import Layouts from "./layouts/Layouts";
-import Home from "./pages/Home";
-import Blogs from "./pages/Blogs";
-import Contact from "./pages/Contact";
-import About from "./pages/About";
-import CouncilWards from "./pages/CouncilWards";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-// Import Auth Here...
 import useAuth from "./store/useAuth";
 import useApp from "./store/useApp";
+import { Toaster } from "react-hot-toast";
+
+// ✅ Lazy load all pages for better performance
+const Home = lazy(() => import("./pages/Home"));
+const Blogs = lazy(() => import("./pages/Blogs"));
+const Contact = lazy(() => import("./pages/Contact"));
+const About = lazy(() => import("./pages/About"));
+const CouncilWards = lazy(() => import("./pages/CouncilWards"));
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
 
 const App = () => {
     const { isLoggedin } = useAuth();
-    const { isBlogging, getBlogs,getFlyers,getSettings, settings, isgettingSettings } = useApp();
+    const {
+        getBlogs,
+        getFlyers,
+        getSettings,
+        isgettingSettings,
+        isBlogging
+    } = useApp();
+
+    // Fetch settings/blogs/flyers once on mount
     useEffect(() => {
-        getSettings();
-        getBlogs()
-        getFlyers()
-        if (isgettingSettings && isBlogging) return;
-    }, [getSettings,getBlogs,getFlyers]);
+        if (!isgettingSettings && !isBlogging) {
+            getSettings();
+            getBlogs();
+            getFlyers();
+        }
+    }, []); // runs once on component mount
 
     return (
         <Router>
-            <Routes>
-                <Route exact path="/" element={<Layouts />}>
-                    <Route index path="/" element={<Home />} />
-                    <Route path="/blogs" element={<Blogs />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/council-wards" element={<CouncilWards />} />
-                </Route>
-                <Route
-                    path="/login"
-                    element={isLoggedin() ? <Navigate to="/" /> : <Login />}
-                />
-                <Route
-                    path="/signup"
-                    element={isLoggedin() ? <Navigate to="/" /> : <Signup />}
-                />
-            </Routes>
+            {/* ✅ Fallback loader while components are lazy-loaded */}
+            <Suspense fallback={<div>Loading...</div>}>
+                <Routes>
+                    <Route path="/" element={<Layouts />}>
+                        <Route index={true} element={<Home />} />
+                        <Route path="blogs" element={<Blogs />} />
+                        <Route path="contact" element={<Contact />} />
+                        <Route path="about" element={<About />} />
+                        <Route path="council-wards" element={<CouncilWards />} />
+                    </Route>
+
+                    {/* ✅ Auth routes */}
+                    <Route
+                        path="/login"
+                        element={isLoggedin() ? <Navigate to="/" /> : <Login />}
+                    />
+                    <Route
+                        path="/signup"
+                        element={isLoggedin() ? <Navigate to="/" /> : <Signup />}
+                    />
+
+                    {/* ✅ Catch-all route for 404 */}
+                    <Route
+                        path="*"
+                        element={<h1 style={{ textAlign: "center", marginTop: "50px" }}>404 - Page Not Found</h1>}
+                    />
+                </Routes>
+            </Suspense>
         </Router>
     );
 };

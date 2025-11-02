@@ -1,10 +1,12 @@
 import { create } from "zustand";
 import axios from "../libs/axios";
+import toast from "react-hot-toast";
 
 const useApp = create((set, get) => ({
     isgettingSettings: false,
     isBlogging: false,
     isDownloading: false,
+    isSubscribing : false,
     settings: {},
     blogs: [],
     flyers: [],
@@ -60,6 +62,23 @@ const useApp = create((set, get) => ({
             console.error("Error:", err);
         } finally {
             set({ isDownloading: false });
+        }
+    } ,
+     
+    subscribedEmail : async(email,showmessage) => {
+        try {
+            set({isSubscribing : true})
+            const res = await axios.post("/auth/subscribed-email",{email})
+           if(res?.data?.success) {
+             toast.success(res?.data?.message)
+           }else {
+            toast.error(res?.data?.message)
+           }
+        } catch (error) {
+            console.log(error)
+            toast.error(error?.message)
+        }finally {
+            set({isSubscribing : false})
         }
     }
 }));

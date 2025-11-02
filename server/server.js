@@ -26,6 +26,7 @@ app.use(cookieParser());
 // ---------------------- ROUTES ----------------------
 app.use("/api/v1", require("./routes/auth.routes"));
 app.use("/api/v1/admin", require("./routes/admin.routes"));
+app.use("/api/v1/auth",require("./routes/email.routes"))
 
 // ---------------------- STATIC FILES ----------------------
 const adminPath = path.join(__dirname, "../admin/dist");
