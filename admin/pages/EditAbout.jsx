@@ -109,7 +109,9 @@ const EditAbout = () => {
                         id="banner-img"
                         hidden
                     />
+                    {data?.bannerImage?.url || data?.bannerImage &&
                     <img src={data?.bannerImage?.url || data?.bannerImage} alt="Banner" />
+}
                 </div>
 
                 <div className="flex">
@@ -121,7 +123,9 @@ const EditAbout = () => {
                         id="about-img"
                         hidden
                     />
+                    {data?.aboutImage?.url || data?.aboutImage &&
                     <img src={data?.aboutImage?.url || data?.aboutImage} alt="About" />
+}
                 </div>
                 <div className="box">
                     <strong>Change Banner Heading Text</strong>
@@ -165,7 +169,7 @@ const EditAbout = () => {
                     </small>
                 </div>
 
-                <button onClick={handleSubmit}>
+                <button disabled={isSaving} onClick={handleSubmit}>
                     {isSaving ? "Saving..." : "Save Now"}
                 </button>
             </div>
