@@ -8,7 +8,6 @@ import {
 import Layouts from "./layouts/Layouts";
 import useAuth from "./store/useAuth";
 import useApp from "./store/useApp";
-import { Toaster } from "react-hot-toast";
 
 // ✅ Lazy load all pages for better performance
 const Home = lazy(() => import("./pages/Home"));

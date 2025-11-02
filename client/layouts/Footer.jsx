@@ -12,10 +12,6 @@ const Footer = () => {
     const {subscribedEmail,isSubscribing} = useApp()
     const [email,setEmail] = useState("")
     const showMessage = (message, type) => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
         if (type) {
             msgRef.current.classList.add("success");
             msgRef.current.textContent = message;
@@ -32,10 +28,10 @@ const Footer = () => {
   return (
   <footer>
   <div className="email-subscription">
-    <div classname="error" ref={msgRef}>Invalid email address</div>
             <div class="left">
                 <h4>Wanna join with us please subscribe !</h4>
             </div>
+            <div id='msg' ref={msgRef}></div>
             <div class="right">
                 <div className="email-area">
                     <input
@@ -45,7 +41,8 @@ const Footer = () => {
                         autocomplete
                         placeholder="Enter Email Address"
                     />
-                    <button onClick={async(e)=>{await subscribedEmail(email,showmessage)}}>{isSubscribing ? "Processing..." : "Subscribe Now"}</button>
+                    <button onClick={async(e)=>{e.preventDefault()
+                        await subscribedEmail(email,showMessage)}}>{isSubscribing ? "Processing..." : "Subscribe Now"}</button>
                 </div>
             </div>
         </div>
