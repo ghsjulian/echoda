@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
 "scripts": {
-  "start": "node server/server.js",
+  "start": "npm install && node server/server.js",
   "server": "nodemon server/server.js",
   "client": "cd client && npm run client",
   "admin": "cd admin && npm run admin",
   "client-build": "cd client && npm run build",
   "admin-build": "cd admin && npm run build",
-  "build-all": "npm run client-build && npm run admin-build"
+  "build-all": "npm run client-build"
 },
   "dependencies": {
     "axios": "^1.12.2",
