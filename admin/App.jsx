@@ -66,8 +66,8 @@ const App = () => {
                             </PrivateRoute>
                         }
                     >
-                        <Route index element={<Dashboard />} />
-                        <Route path="dashboard" element={<Dashboard />} />
+                        <Route element={<Dashboard />} />
+                        <Route index={true} path="dashboard" element={<Dashboard />} />
                         <Route path="edit-home" element={<EditHome />} />
                         <Route path="edit-about" element={<EditAbout />} />
                         <Route path="add-team" element={<AddTeam />} />

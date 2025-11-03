@@ -1,4 +1,4 @@
-// ---------------------- REQUIRE PACKAGES ----------------------
+// Requiring All Packages
 require("dotenv").config();
 const path = require("path");
 const express = require("express");
@@ -8,13 +8,13 @@ const createConnection = require("./configs/db.config");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || "0.0.0.0";
+const HOST = process.env.HOST || "127.0.0.1";
 
 // ---------------------- MIDDLEWARE ----------------------
 app.use(express.json({ limit: "1000mb" }));
 app.use(
     cors({
-        origin: ["http://localhost:5000", "http://localhost:5001"],
+        origin: ["http://localhost:5000", "http://localhost:5001","https://echoda-admin.netlify.app"],
         methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"],
         credentials: true,
@@ -29,24 +29,15 @@ app.use("/api/v1/admin", require("./routes/admin.routes"));
 app.use("/api/v1/auth", require("./routes/email.routes"));
 
 // ---------------------- STATIC FILES ----------------------
-// Serve built client and admin apps (adjust if needed)
-const clientPath = path.join(__dirname, "../client/dist");
-const adminPath = path.join(__dirname, "../admin/dist");
+const appPath = path.join(__dirname, "../client/dist");
+const uploadPath = path.join(__dirname, "./uploads");
 
-app.use("/admin", express.static(adminPath));
-app.use(express.static(clientPath));
+app.use(express.static(appPath));
+app.use("/uploads", express.static(uploadPath));
 
-// ---------------------- SPA FALLBACK (Express 5 SAFE) ----------------------
-// Express 5+ now requires RegExp-style catch-alls for wildcard routes
-
-// Admin SPA fallback
-app.get(/^\/admin(\/.*)?$/, (req, res) => {
-    res.sendFile(path.join(adminPath, "index.html"));
-});
-
-// Client SPA fallback
-app.get(/^\/(?!api).*/, (req, res) => {
-    res.sendFile(path.join(clientPath, "index.html"));
+// ---------------------- SPA FALLBACK ----------------------
+app.get(/.*/, (req, res) => {
+    res.sendFile(path.join(appPath, "index.html"));
 });
 
 // ---------------------- START SERVER ----------------------
@@ -54,10 +45,9 @@ if (process.env.NODE_ENV !== "production") console.clear();
 
 createConnection()
     .then(() => {
-        app.listen(PORT, HOST, () => {
+        app.listen(PORT, () => {
             console.log("\n[+] Express Server Running!");
-            console.log(`\n[+] Host: ${HOST}`);
-            console.log(`\n[+] Port: ${PORT}\n`);
+            console.log(`\n[+] Host:${HOST}\n`);
         });
     })
     .catch(err => {
