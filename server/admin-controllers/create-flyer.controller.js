@@ -15,7 +15,7 @@ const createFlyer = async (req, res) => {
   try {
     const host =
       process.env.NODE_ENV === "production"
-        ? "http://api.agatuvoice.online"
+        ? "https://api.agatuvoice.online"
         : process.env.HOST;
     const { flyer, title } = req.body;
     let fileData = null;
