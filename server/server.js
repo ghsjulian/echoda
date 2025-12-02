@@ -33,7 +33,7 @@ app.use("/api/v1/admin", require("./routes/admin.routes"));
 app.use("/api/v1/auth", require("./routes/email.routes"));
 
 // ---------------------- STATIC FILES ----------------------
-const appPath = path.join(__dirname, "../client/dist");
+// const appPath = path.join(__dirname, "../client/dist");
 const uploadPath = path.join(__dirname, "./uploads");
 
 // app.use(express.static(appPath));
