@@ -21,7 +21,7 @@ const loginController = async (req, res) => {
                 name: existUser.name,
                 email
             });
-            setCookie(res, token);
+            await setCookie(res, token);
             const user = await userModel.findOne({ email }).select("-password");
             return res.status(200).json({
                 success: true,

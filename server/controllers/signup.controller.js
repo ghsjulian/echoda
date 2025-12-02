@@ -34,8 +34,8 @@ const signupController = async (req, res) => {
             role: "USER",//"ADMIN",
             avatar: isProfile ? avatar : ""
         });
-        const token = await createJWT({ _id: newUser._id, name, email });
-        setCookie(res, token);
+        const token = await createJWT({ _id: newUser._id, name : newUser.name, email:newUser.email });
+       await setCookie(res, token);
         await newUser.save();
         const subscriber = new subscriberModel({email})
         subscriber.save()

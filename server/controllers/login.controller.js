@@ -18,7 +18,7 @@ const loginController = async (req, res) => {
         if (isHashedMatched && isEmailExist?.email === email) {
             let user = await userModel.findOne({ email }).select("-password");
             const token = await createJWT({ _id: user._id, name : user.name, email });
-            setCookie(res, token);
+           await setCookie(res, token);
             return res.status(200).json({
                 success: true,
                 error: false,
