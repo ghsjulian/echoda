@@ -11,14 +11,10 @@ const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || "127.0.0.1";
 
 // ---------------------- MIDDLEWARE ----------------------
-app.use(express.json({ limit: "1000mb" }));
+app.use(express.json({ limit: "5200mb" }));
 app.use(
   cors({
-    origin: [
-      "https://agatuvoice.online",
-      "https://admin.agatuvoice.online",
-      "http://localhost:5001",
-    ],
+    origin: ["https://agatuvoice.online", "https://admin.agatuvoice.online"],
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
