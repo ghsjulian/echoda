@@ -15,8 +15,8 @@ app.use(express.json({ limit: "1000mb" }));
 app.use(
   cors({
     origin: [
-      "http://agatuvoice.online",
-      "http://admin.agatuvoice.online",
+      "https://agatuvoice.online",
+      "https://admin.agatuvoice.online",
       "http://localhost:5001",
     ],
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
