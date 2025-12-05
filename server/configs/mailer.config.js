@@ -1,16 +1,48 @@
 const nodemailer = require("nodemailer");
 
+const sendMail = async (name,to) => {
+    try {
+        const transporter = nodemailer.createTransport({
+            host: "smtp.hostinger.com", // or "mail.yourdomain.com"
+            port: 465, // preferred for production
+            secure: true, // true for port 465
+            auth: {
+                user: process.env.EMAIL_ADDRESS, // full email
+                pass: process.env.EMAIL_PASSWORD
+            },
+            tls: {
+                rejectUnauthorized: false // important in VPS
+            }
+        });
+
+        const info = await transporter.sendMail({
+            from: '"Agatuvoice Online" <contact@agatuvoice.online>',
+            to: to,
+            subject: "Testing Nodemailer on Hostinger",
+            text: "Email sent successfully!",
+            html: "<b>Email sent successfully! Welcome </b>"+name
+        });
+        console.log(info);
+        return true
+    } catch (err) {
+        console.error("Email Error:", err);
+        return false
+    }
+};
+
+/*
 const sendMail = async (toEmail) => {
     try {
         let transporter = nodemailer.createTransport({
-            service: "gmail",
+            service: "smtp.hostinger.com",
+            port : 466,
             auth: {
                 user: process.env.EMAIL_ADDRESS,
                 pass: process.env.EMAIL_PASSWORD
             }
         });
         let mailOptions = {
-            from: "Echoda Web'ghsgobindo@gmail.com'",
+            from: "Echoda Web'contact@agatuvoice.online'",
             to: toEmail,
             subject: "You Have successfully Subscribed In Our Community.",
             text: "You Have successfully Subscribed In Our Community.",
@@ -196,5 +228,5 @@ const sendMail = async (toEmail) => {
         return false;
     }
 };
-
+*/
 module.exports = sendMail;
