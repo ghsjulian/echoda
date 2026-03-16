@@ -23,6 +23,7 @@ const EditBlog = lazy(() => import("./pages/EditBlog"));
 const CampaignFlyer = lazy(() => import("./pages/CampaignFlyer"));
 const CampaignFlyerList = lazy(() => import("./pages/CampaignFlyerList"));
 const EditFlyer = lazy(() => import("./pages/EditFlyer"));
+import CreateAcount from "./pages/CreateAcount"
 
 const App = () => {
     const { admin, isAuth } = useAdminStore();
@@ -37,6 +38,7 @@ const App = () => {
     // ✅ Safe and clean initialization
     useEffect(() => {
         isAuth();
+        if (!admin) return;
         if (!isgettingSettings && !isFetchingBlogs) {
             getSettings();
             getBlogs();
@@ -67,7 +69,11 @@ const App = () => {
                         }
                     >
                         <Route element={<Dashboard />} />
-                        <Route index={true} path="dashboard" element={<Dashboard />} />
+                        <Route
+                            index={true}
+                            path="dashboard"
+                            element={<Dashboard />}
+                        />
                         <Route path="edit-home" element={<EditHome />} />
                         <Route path="edit-about" element={<EditAbout />} />
                         <Route path="add-team" element={<AddTeam />} />
@@ -82,8 +88,14 @@ const App = () => {
                         <Route path="create-blog" element={<CreateBlog />} />
                         <Route path="view-blogs" element={<ViewBlogs />} />
                         <Route path="edit-blog/:id" element={<EditBlog />} />
-                        <Route path="create-flyer" element={<CampaignFlyer />} />
-                        <Route path="get-flyer-list" element={<CampaignFlyerList />} />
+                        <Route
+                            path="create-flyer"
+                            element={<CampaignFlyer />}
+                        />
+                        <Route
+                            path="get-flyer-list"
+                            element={<CampaignFlyerList />}
+                        />
                         <Route path="edit-flyer/:id" element={<EditFlyer />} />
                     </Route>
 
@@ -98,16 +110,20 @@ const App = () => {
                             )
                         }
                     />
-
-                    {/* ✅ 404 route for unknown paths */}
                     <Route
                         path="*"
                         element={
-                            <h1 style={{ textAlign: "center", marginTop: "50px" }}>
+                            <h1
+                                style={{
+                                    textAlign: "center",
+                                    marginTop: "50px"
+                                }}
+                            >
                                 404 - Page Not Found
                             </h1>
                         }
                     />
+                    <Route path="/create-account" element={<CreateAcount />} />
                 </Routes>
             </Suspense>
         </Router>

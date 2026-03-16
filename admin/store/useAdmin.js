@@ -4,7 +4,19 @@ import axios from "../libs/axios";
 const useAdminStore = create((set, get) => ({
     admin: JSON.parse(localStorage.getItem("echoda-admin")) || null,
     isSigningIn: false,
+    isSigningUp: false,
 
+    signUp: async (data, showMessage, navigate) => {
+        try {
+            set({ isSigningUp: true });
+            const res = await axios.post("/login", data);
+            console.log(res)
+        } catch (error) {
+            showMessage(error?.response?.data?.message, false);
+        } finally {
+            set({ isSigningUp: false });
+        }
+    },
     loginNow: async (data, showMessage, navigate) => {
         try {
             set({ isSigningIn: true });

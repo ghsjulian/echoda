@@ -169,7 +169,6 @@ echoda
 
 ---
 
-<img src="ghsjulian.jpg"  width="150" height="150"/>
 
 ### 👩‍💻  Made With : Ghs Julian
 
